@@ -4,13 +4,24 @@ use crate::benchmark::{BenchmarkResult, BenchmarkTest};
 use anyhow::{Context, Result};
 use std::fs::{self, File};
 use std::io::{Read, Write};
-use std::path::Path;
+use std::path::{Path, PathBuf};
+use std::sync::atomic::{AtomicU64, Ordering};
 use std::time::{Duration, Instant};
 
 /// Disk speed benchmark struct.
 pub struct DiskBenchmark;
+static TEMP_FILE_COUNTER: AtomicU64 = AtomicU64::new(0);
 
 impl DiskBenchmark {
+    fn temp_path() -> PathBuf {
+        let suffix = TEMP_FILE_COUNTER.fetch_add(1, Ordering::Relaxed);
+        std::env::temp_dir().join(format!(
+            "daemon_benchmark_io_file_{}_{}.tmp",
+            std::process::id(),
+            suffix
+        ))
+    }
+
     fn run_io(temp_path: &Path) -> Result<(Duration, Duration, f64)> {
         const FILE_SIZE: usize = 10 * 1024 * 1024; // 10 MB
         const BLOCK_SIZE: usize = 64 * 1024; // 64 KB
@@ -68,8 +79,7 @@ impl BenchmarkTest for DiskBenchmark {
     }
 
     fn run(&self) -> Result<BenchmarkResult> {
-        let temp_dir = std::env::temp_dir();
-        let temp_path = temp_dir.join("daemon_benchmark_io_file.tmp");
+        let temp_path = Self::temp_path();
 
         let result = Self::run_io(&temp_path);
         let _ = fs::remove_file(&temp_path);
@@ -92,5 +102,17 @@ impl BenchmarkTest for DiskBenchmark {
                 read_elapsed.as_secs_f64() * 1000.0
             ),
         })
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::DiskBenchmark;
+
+    #[test]
+    fn test_temp_path_is_unique_per_call() {
+        let first = DiskBenchmark::temp_path();
+        let second = DiskBenchmark::temp_path();
+        assert_ne!(first, second);
     }
 }
