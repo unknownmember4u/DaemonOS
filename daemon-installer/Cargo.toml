@@ -7,5 +7,8 @@ edition = "2024"
 workspace = true
 
 [dependencies]
+daemon-core = { workspace = true }
 daemon-config = { workspace = true }
 daemon-ipc = { workspace = true }
+daemon-protocol = { workspace = true }
+daemon-utils = { workspace = true }

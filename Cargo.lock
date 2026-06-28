@@ -12,6 +12,9 @@ dependencies = [
 [[package]]
 name = "daemon-config"
 version = "0.1.0"
+dependencies = [
+ "daemon-protocol",
+]
 
 [[package]]
 name = "daemon-core"
@@ -26,19 +29,28 @@ name = "daemon-installer"
 version = "0.1.0"
 dependencies = [
  "daemon-config",
+ "daemon-core",
  "daemon-ipc",
+ "daemon-protocol",
+ "daemon-utils",
 ]
 
 [[package]]
 name = "daemon-ipc"
 version = "0.1.0"
+dependencies = [
+ "daemon-protocol",
+]
 
 [[package]]
 name = "daemon-launcher"
 version = "0.1.0"
 dependencies = [
  "daemon-config",
+ "daemon-core",
  "daemon-ipc",
+ "daemon-protocol",
+ "daemon-utils",
 ]
 
 [[package]]
@@ -46,7 +58,10 @@ name = "daemon-lock"
 version = "0.1.0"
 dependencies = [
  "daemon-config",
+ "daemon-core",
  "daemon-ipc",
+ "daemon-protocol",
+ "daemon-utils",
 ]
 
 [[package]]
@@ -54,7 +69,10 @@ name = "daemon-notify"
 version = "0.1.0"
 dependencies = [
  "daemon-config",
+ "daemon-core",
  "daemon-ipc",
+ "daemon-protocol",
+ "daemon-utils",
 ]
 
 [[package]]
@@ -62,7 +80,17 @@ name = "daemon-panel"
 version = "0.1.0"
 dependencies = [
  "daemon-config",
+ "daemon-core",
  "daemon-ipc",
+ "daemon-protocol",
+ "daemon-utils",
+]
+
+[[package]]
+name = "daemon-protocol"
+version = "0.1.0"
+dependencies = [
+ "daemon-utils",
 ]
 
 [[package]]
@@ -70,13 +98,23 @@ name = "daemon-settings"
 version = "0.1.0"
 dependencies = [
  "daemon-config",
+ "daemon-core",
  "daemon-ipc",
+ "daemon-protocol",
+ "daemon-utils",
 ]
+
+[[package]]
+name = "daemon-utils"
+version = "0.1.0"
 
 [[package]]
 name = "daemon-wm"
 version = "0.1.0"
 dependencies = [
  "daemon-config",
+ "daemon-core",
  "daemon-ipc",
+ "daemon-protocol",
+ "daemon-utils",
 ]

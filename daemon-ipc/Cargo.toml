@@ -7,4 +7,4 @@ edition = "2024"
 workspace = true
 
 [dependencies]
-# Dependencies will be declared here as needed by the workspace.
+daemon-protocol = { workspace = true }

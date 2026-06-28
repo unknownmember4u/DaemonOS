@@ -5,6 +5,8 @@ members = [
     "daemon-core",
     "daemon-config",
     "daemon-ipc",
+    "daemon-utils",
+    "daemon-protocol",
     "daemon-wm",
     "daemon-panel",
     "daemon-launcher",
@@ -18,6 +20,8 @@ members = [
 daemon-core = { path = "./daemon-core" }
 daemon-config = { path = "./daemon-config" }
 daemon-ipc = { path = "./daemon-ipc" }
+daemon-protocol = { path = "./daemon-protocol" }
+daemon-utils = { path = "./daemon-utils" }
 
 [workspace.lints.rust]
 unsafe_code = "forbid"
