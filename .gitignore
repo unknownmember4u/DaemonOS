@@ -1,0 +1,22 @@
+# Cargo build target
+target/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# IDEs/Editors
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Cargo lockfile
+# Note: Keep Cargo.lock for binary projects, but since we are a workspace containing both,
+# we typically commit Cargo.lock. We'll leave it unignored.
+Cargo.lock.log
+
+# Temporary/Backup files
+*.bak
+*.tmp
+*~

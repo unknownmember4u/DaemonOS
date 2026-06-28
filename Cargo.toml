@@ -1,0 +1,13 @@
+[workspace]
+resolver = "2"
+members = [
+    "daemon-cli",
+    "daemon-core",
+    "daemon-wm",
+    "daemon-panel",
+    "daemon-launcher",
+    "daemon-settings",
+    "daemon-notify",
+    "daemon-lock",
+    "daemon-installer",
+]
