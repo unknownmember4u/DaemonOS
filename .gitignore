@@ -2,6 +2,11 @@
 target/
 Cargo.lock.log
 
+# --- ArchISO Build Artifacts ---
+daemon-iso/out/
+daemon-iso/work/
+out/
+
 # --- IDEs & Editors ---
 # VS Code
 .vscode/

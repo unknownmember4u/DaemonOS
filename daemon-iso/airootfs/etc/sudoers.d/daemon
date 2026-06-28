@@ -1,1 +1,1 @@
-daemon ALL=(ALL:ALL) NOPASSWD: ALL
+daemonos ALL=(ALL:ALL) NOPASSWD: ALL
