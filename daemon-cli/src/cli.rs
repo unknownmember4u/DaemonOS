@@ -29,4 +29,6 @@ pub enum Commands {
     Info,
     /// Audit presence of typical developer tools in PATH
     Doctor,
+    /// Run diagnostic hardware and compiler benchmark tests
+    Benchmark,
 }

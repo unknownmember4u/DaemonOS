@@ -30,6 +30,7 @@ pub fn run() -> Result<()> {
         Some(Commands::Version) => commands::version::handle()?,
         Some(Commands::Info) => commands::info::handle()?,
         Some(Commands::Doctor) => commands::doctor::handle()?,
+        Some(Commands::Benchmark) => commands::benchmark::handle()?,
         None => {
             // Default to printing help if no command is passed
             use clap::CommandFactory;
