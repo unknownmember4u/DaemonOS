@@ -1,22 +1,59 @@
-# Cargo build target
+# --- Rust & Cargo ---
 target/
-
-# OS-specific files
-.DS_Store
-Thumbs.db
-
-# IDEs/Editors
-.idea/
-.vscode/
-*.swp
-*.swo
-
-# Cargo lockfile
-# Note: Keep Cargo.lock for binary projects, but since we are a workspace containing both,
-# we typically commit Cargo.lock. We'll leave it unignored.
 Cargo.lock.log
 
-# Temporary/Backup files
-*.bak
-*.tmp
+# --- IDEs & Editors ---
+# VS Code
+.vscode/
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/launch.json
+!.vscode/tasks.json
+*.code-workspace
+
+# JetBrains (IntelliJ, RustRover, etc.)
+.idea/
+*.iml
+
+# Vim/Emacs/Sublime
 *~
+*.swp
+*.swo
+.project
+.settings/
+.sublime-project
+.sublime-workspace
+
+# --- OS-specific ---
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+.directory
+*~
+
+# --- Logs, Cache, Temp ---
+*.log
+tmp/
+.cache/
+.sass-cache/
+node_modules/
+.npm/
+.yarn/
+.pytest_cache/
+.ipynb_checkpoints/

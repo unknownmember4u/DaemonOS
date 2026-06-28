@@ -1,3 +1,20 @@
-fn main() {
-    println!("Hello, world!");
+//! Desktop Notification Daemon for DaemonOS.
+
+use daemon_config::DaemonConfig;
+use daemon_ipc::{IpcChannel, IpcMessage};
+
+fn main() -> Result<(), String> {
+    println!("DaemonOS Notification Daemon v0.1.0");
+
+    let config = DaemonConfig::load_from_path("/etc/daemon/notify.toml").unwrap_or_else(|err| {
+        eprintln!("Warning: Failed to load config ({err}). Using default settings.");
+        DaemonConfig::default()
+    });
+
+    println!("Starting notification center with theme: {}", config.theme);
+
+    let ipc = IpcChannel::connect("/run/user/1000/daemon.sock")?;
+    ipc.send(&IpcMessage::Command("notify_init".to_string()))?;
+
+    Ok(())
 }

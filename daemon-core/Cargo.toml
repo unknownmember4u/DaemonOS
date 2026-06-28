@@ -3,4 +3,9 @@ name = "daemon-core"
 version = "0.1.0"
 edition = "2024"
 
+[lints]
+workspace = true
+
 [dependencies]
+daemon-config = { workspace = true }
+daemon-ipc = { workspace = true }

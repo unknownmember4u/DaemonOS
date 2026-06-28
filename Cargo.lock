@@ -5,35 +5,78 @@ version = 4
 [[package]]
 name = "daemon-cli"
 version = "0.1.0"
+dependencies = [
+ "daemon-core",
+]
+
+[[package]]
+name = "daemon-config"
+version = "0.1.0"
 
 [[package]]
 name = "daemon-core"
 version = "0.1.0"
+dependencies = [
+ "daemon-config",
+ "daemon-ipc",
+]
 
 [[package]]
 name = "daemon-installer"
+version = "0.1.0"
+dependencies = [
+ "daemon-config",
+ "daemon-ipc",
+]
+
+[[package]]
+name = "daemon-ipc"
 version = "0.1.0"
 
 [[package]]
 name = "daemon-launcher"
 version = "0.1.0"
+dependencies = [
+ "daemon-config",
+ "daemon-ipc",
+]
 
 [[package]]
 name = "daemon-lock"
 version = "0.1.0"
+dependencies = [
+ "daemon-config",
+ "daemon-ipc",
+]
 
 [[package]]
 name = "daemon-notify"
 version = "0.1.0"
+dependencies = [
+ "daemon-config",
+ "daemon-ipc",
+]
 
 [[package]]
 name = "daemon-panel"
 version = "0.1.0"
+dependencies = [
+ "daemon-config",
+ "daemon-ipc",
+]
 
 [[package]]
 name = "daemon-settings"
 version = "0.1.0"
+dependencies = [
+ "daemon-config",
+ "daemon-ipc",
+]
 
 [[package]]
 name = "daemon-wm"
 version = "0.1.0"
+dependencies = [
+ "daemon-config",
+ "daemon-ipc",
+]

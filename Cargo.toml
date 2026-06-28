@@ -3,6 +3,8 @@ resolver = "2"
 members = [
     "daemon-cli",
     "daemon-core",
+    "daemon-config",
+    "daemon-ipc",
     "daemon-wm",
     "daemon-panel",
     "daemon-launcher",
@@ -11,3 +13,14 @@ members = [
     "daemon-lock",
     "daemon-installer",
 ]
+
+[workspace.dependencies]
+daemon-core = { path = "./daemon-core" }
+daemon-config = { path = "./daemon-config" }
+daemon-ipc = { path = "./daemon-ipc" }
+
+[workspace.lints.rust]
+unsafe_code = "forbid"
+
+[workspace.lints.clippy]
+unwrap_used = "deny"

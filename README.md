@@ -1,57 +1,59 @@
 # DaemonOS
 
-DaemonOS is a modern, performance-oriented Linux-based desktop operating environment components written in Rust. It provides a modular, lightweight, and customizable system of window management, configuration utility, launcher, and system panel tools.
+DaemonOS is a modern, modular, performance-oriented open-source operating system environment built entirely in Rust. It utilizes a highly decoupled, message-driven micro-service architecture to coordinate window management, panels, app launchers, notification servers, and configuration settings.
 
-## Repository Structure
+## System Architecture
 
-This repository is structured as a Cargo workspace containing the following crates:
+DaemonOS components are decoupled by design. No component directly depends on another user interface component; all coordination is processed via the shared inter-process communication layer (`daemon-ipc`).
 
-- **`daemon-core`**: Core library containing shared utilities, protocols, and configuration parsing.
-- **`daemon-cli`**: Command-line interface for controlling and interacting with DaemonOS services.
-- **`daemon-wm`**: The core window manager for the desktop environment.
-- **`daemon-panel`**: System status bar / panel providing clock, tray, workspaces switcher, and system monitors.
-- **`daemon-launcher`**: Application launcher / runner.
-- **`daemon-settings`**: GUI configuration center for system and theme settings.
-- **`daemon-notify`**: Desktop notification daemon implementing the desktop notification specification.
-- **`daemon-lock`**: Simple, secure screen locker.
-- **`daemon-installer`**: System installation wizard/utility.
-
-### Additional Folders
-
-- **`docs/`**: Project documentation, architectural specs, and user manuals.
-- **`assets/`**: Images, icons, wallpapers, and desktop entries.
-- **`scripts/`**: Development and deployment utility scripts.
-- **`daemon-packages/`**: Distribution-specific package files and recipes (e.g., PKGBUILD, debian control).
-- **`daemon-iso/`**: Configuration files and build scripts for generating custom DaemonOS installation ISOs.
-
-## Building and Running
-
-### Prerequisites
-
-You will need the Rust toolchain installed:
-
-```bash
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
+          [ daemon-cli ] (CLI Controller)
+                 │
+                 ▼
+          [ daemon-core ] (Core Orchestrator)
+                 │
+                 ▼
+           [ daemon-ipc ] (IPC message definitions & broker)
+           /     │      \
+          /      │       \
+         ▼       ▼        ▼
+  [daemon-wm] [daemon-panel] [daemon-launcher] ... (Desktop Services)
 ```
 
-Make sure you have system dependencies installed (such as `x11`, `wayland`, `dbus`, `cairo`, `pango` development packages depending on the components build targets).
+## Workspace Crate Registry
 
-### Compile all workspace members
+This Cargo workspace includes the following crates:
+
+*   **`daemon-config`**: Shared configuration library providing parsing and validation of system config.
+*   **`daemon-ipc`**: Shared IPC protocol library establishing communication channels and message schemas.
+*   **`daemon-core`**: Core library managing workspace component initialization and state.
+*   **`daemon-cli`**: System command-line interface utility.
+*   **`daemon-wm`**: Desktop window manager.
+*   **`daemon-panel`**: System status bar and panel.
+*   **`daemon-launcher`**: Application launcher overlay.
+*   **`daemon-settings`**: Configuration dashboard GUI.
+*   **`daemon-notify`**: Desktop notification daemon.
+*   **`daemon-lock`**: System screen locker.
+*   **`daemon-installer`**: OS installation wizard.
+
+## Development Standards
+
+To maintain production-grade quality, the project enforces:
+*   **No Unsafe Code**: The entire workspace forbids unsafe blocks (`unsafe_code = "forbid"`).
+*   **No Panics in Production**: The compiler denies use of `unwrap()` via clippy configuration (`unwrap_used = "deny"`).
+*   **Consistent Styling**: Enforced automatically by `cargo fmt`.
+
+## Getting Started
+
+### Compile the entire workspace
 
 ```bash
-cargo build --release
+cargo build
 ```
 
-### Running a specific component
+### Run check and linters
 
 ```bash
-cargo run --bin daemon-wm
+cargo fmt --check
+cargo clippy --all-targets
 ```
-
-## Contributing
-
-Please review our contributing guidelines and use the provided issue/PR templates when submitting changes.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
