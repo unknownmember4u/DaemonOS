@@ -1,45 +1,67 @@
 //! Core system orchestration library for DaemonOS.
 
+pub mod config;
+pub mod errors;
+pub mod events;
+pub mod ipc;
+pub mod logging;
+pub mod system;
+
+// Re-expose primary items for standard usage
+pub use config::SystemConfig;
+pub use errors::{CoreError, Result};
+pub use events::{Event, EventBus};
+pub use ipc::{IpcBroker, LayoutMessage};
+pub use logging::Logger;
+pub use system::SystemInfo;
+
 pub use daemon_config::DaemonConfig;
 pub use daemon_ipc::{IpcChannel, IpcMessage};
 
 /// Main orchestrator of the DaemonOS desktop components.
-#[derive(Debug, Default)]
 pub struct DaemonSystem {
-    config: DaemonConfig,
-    ipc: IpcChannel,
+    config: SystemConfig,
+    events: EventBus,
+    sys_info: SystemInfo,
 }
 
 impl DaemonSystem {
     /// Initialize the DaemonOS core system with a given configuration.
-    pub fn new(config: DaemonConfig) -> Self {
+    pub fn new(config: SystemConfig) -> Self {
         Self {
             config,
-            ipc: IpcChannel::new(),
+            events: EventBus::new(),
+            sys_info: SystemInfo::new(),
         }
     }
 
-    /// Establish the core inter-process communication channel.
+    /// Access the current configuration settings.
+    pub fn config(&self) -> &SystemConfig {
+        &self.config
+    }
+
+    /// Access the system event bus.
+    pub fn events(&self) -> &EventBus {
+        &self.events
+    }
+
+    /// Access the system information module.
+    pub fn sys_info(&self) -> &SystemInfo {
+        &self.sys_info
+    }
+
+    /// Placeholder service startup handler.
     ///
     /// # Errors
     ///
-    /// Returns a descriptive error message if connection to the socket path fails.
-    pub fn start_services(&mut self, socket_path: &str) -> Result<(), String> {
-        let channel = IpcChannel::connect(socket_path)?;
-        self.ipc = channel;
-
-        // Mock notification sent on successful startup
-        let startup_event = IpcMessage::Event {
-            sender: "daemon-core".to_string(),
-            details: "Services started successfully".to_string(),
-        };
-        self.ipc.send(&startup_event)?;
-
+    /// Returns an error string on failure.
+    pub fn start_services(&mut self, _socket_path: &str) -> std::result::Result<(), String> {
         Ok(())
     }
+}
 
-    /// Access the current configuration settings.
-    pub fn config(&self) -> &DaemonConfig {
-        &self.config
+impl Default for DaemonSystem {
+    fn default() -> Self {
+        Self::new(SystemConfig::default())
     }
 }
