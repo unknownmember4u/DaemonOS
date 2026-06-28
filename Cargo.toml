@@ -22,6 +22,15 @@ daemon-config = { path = "./daemon-config" }
 daemon-ipc = { path = "./daemon-ipc" }
 daemon-protocol = { path = "./daemon-protocol" }
 daemon-utils = { path = "./daemon-utils" }
+# External dependencies
+clap = { version = "4.5", features = ["derive"] }
+anyhow = "1.0"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+serde = { version = "1.0", features = ["derive"] }
+toml = "0.8"
+sysinfo = "0.31"
+which = "6.0"
 
 [workspace.lints.rust]
 unsafe_code = "forbid"
