@@ -17,6 +17,8 @@ bootstrap_tarball_compression=('zstd' '-c' '-T0' '--auto-threads=logical' '--lon
 file_permissions=(
   ["/etc/shadow"]="0:0:400"
   ["/etc/sudoers.d/daemon"]="0:0:440"
+  ["/home/daemonos"]="1000:1000:750"
+  ["/home/daemonos/.bash_profile"]="1000:1000:644"
   ["/root"]="0:0:750"
   ["/root/.automated_script.sh"]="0:0:755"
   ["/root/.gnupg"]="0:0:700"
