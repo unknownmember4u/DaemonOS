@@ -208,6 +208,9 @@ dependencies = [
  "daemon-ipc",
  "daemon-protocol",
  "daemon-utils",
+ "serde",
+ "toml",
+ "which",
 ]
 
 [[package]]
