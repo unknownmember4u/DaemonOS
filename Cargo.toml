@@ -65,3 +65,7 @@ debug = true
 opt-level = 3
 lto = "fat"
 codegen-units = 1
+
+[profile.release-with-debug]
+inherits = "release"
+debug = true
