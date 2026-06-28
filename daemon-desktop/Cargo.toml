@@ -1,5 +1,5 @@
 [package]
-name = "daemon-wm"
+name = "daemon-desktop"
 version = "0.1.0"
 edition = "2024"
 
@@ -12,3 +12,4 @@ daemon-config = { workspace = true }
 daemon-ipc = { workspace = true }
 daemon-protocol = { workspace = true }
 daemon-utils = { workspace = true }
+anyhow = { workspace = true }

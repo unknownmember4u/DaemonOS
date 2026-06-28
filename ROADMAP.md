@@ -13,10 +13,10 @@ This roadmap outlines the planned development phases for the DaemonOS desktop en
 - [ ] Develop serialize/deserialize protocols for window management and notification event payloads.
 - [ ] Create mock tests simulating message dispatch and receipt.
 
-## Phase 3: Window Management & Display
-- [ ] Implement `daemon-wm` integrating with display server interfaces (Wayland/X11).
-- [ ] Develop tiling/floating window placement layouts.
-- [ ] Connect `daemon-wm` to `daemon-ipc` to accept focus/kill commands.
+## Phase 3: Desktop Environment & Window Integration
+- [ ] Implement `daemon-desktop` integrating with Hyprland display server configurations and themes.
+- [ ] Develop tiling/floating window placement desktop integrations.
+- [ ] Connect `daemon-desktop` to `daemon-ipc` to accept focus/kill commands.
 
 ## Phase 4: UI Shell Components
 - [ ] Build status-bar widgets in `daemon-panel` (clock, workspaces, network, battery).

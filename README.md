@@ -17,7 +17,7 @@ DaemonOS components are decoupled by design. No component directly depends on an
            /     │      \
           /      │       \
          ▼       ▼        ▼
-  [daemon-wm] [daemon-panel] [daemon-launcher] ... (Desktop Services)
+   [daemon-desktop] [daemon-panel] [daemon-launcher] ... (Desktop Services)
 ```
 
 ## Workspace Crate Registry
@@ -28,7 +28,7 @@ This Cargo workspace includes the following crates:
 *   **`daemon-ipc`**: Shared IPC protocol library establishing communication channels and message schemas.
 *   **`daemon-core`**: Core library managing workspace component initialization and state.
 *   **`daemon-cli`**: System command-line interface utility.
-*   **`daemon-wm`**: Desktop window manager.
+*   **`daemon-desktop`**: Desktop integrations and window manager integration.
 *   **`daemon-panel`**: System status bar and panel.
 *   **`daemon-launcher`**: Application launcher overlay.
 *   **`daemon-settings`**: Configuration dashboard GUI.

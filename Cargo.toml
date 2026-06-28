@@ -7,7 +7,7 @@ members = [
     "daemon-ipc",
     "daemon-utils",
     "daemon-protocol",
-    "daemon-wm",
+    "daemon-desktop",
     "daemon-panel",
     "daemon-launcher",
     "daemon-settings",

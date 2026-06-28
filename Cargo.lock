@@ -187,6 +187,18 @@ dependencies = [
 ]
 
 [[package]]
+name = "daemon-desktop"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "daemon-config",
+ "daemon-core",
+ "daemon-ipc",
+ "daemon-protocol",
+ "daemon-utils",
+]
+
+[[package]]
 name = "daemon-installer"
 version = "0.1.0"
 dependencies = [
@@ -269,17 +281,6 @@ dependencies = [
 [[package]]
 name = "daemon-utils"
 version = "0.1.0"
-
-[[package]]
-name = "daemon-wm"
-version = "0.1.0"
-dependencies = [
- "daemon-config",
- "daemon-core",
- "daemon-ipc",
- "daemon-protocol",
- "daemon-utils",
-]
 
 [[package]]
 name = "either"
