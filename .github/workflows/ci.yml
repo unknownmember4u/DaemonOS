@@ -1,0 +1,35 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate:
+    name: Validate Workspace
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Sources
+        uses: actions/checkout@v4
+
+      - name: Install Stable Toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+
+      - name: Cache Build Artifacts
+        uses: swatinem/rust-cache@v2
+
+      - name: Formatting Check
+        run: cargo fmt --check
+
+      - name: Clippy Lints
+        run: cargo clippy --workspace --all-targets --all-features -- -D warnings
+
+      - name: Run Tests
+        run: cargo test --workspace
+
+      - name: Build Workspace (Release)
+        run: cargo build --workspace --release

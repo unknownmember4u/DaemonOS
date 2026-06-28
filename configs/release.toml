@@ -1,0 +1,14 @@
+# ==============================================================================
+# DaemonOS Release Production Configuration Profile
+# ==============================================================================
+
+[system]
+log_level = "error"
+ipc_socket_path = "/run/daemon.sock"
+
+[theme]
+name = "enterprise-dark"
+
+[window_manager]
+layout = "tiling"
+gap_size_pixels = 6

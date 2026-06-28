@@ -1,0 +1,5 @@
+# Clippy configuration for DaemonOS workspace.
+# Enforces strict safety and architectural guidelines.
+
+# Upper bound on cognitive complexity before warning
+cognitive-complexity-threshold = 25

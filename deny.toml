@@ -1,0 +1,23 @@
+# cargo-deny configuration for DaemonOS.
+
+[graph]
+targets = []
+
+[licenses]
+unlicensed = "deny"
+allow-licensing-metadata = true
+allow = [
+    "MIT",
+    "Apache-2.0",
+    "BSD-3-Clause",
+]
+
+[bans]
+multiple-versions = "warn"
+deny = []
+
+[sources]
+unknown-registry = "deny"
+unknown-git = "deny"
+allow-registry = ["https://github.com/rust-lang/crates.io-index"]
+allow-git = []

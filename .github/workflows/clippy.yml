@@ -1,0 +1,26 @@
+name: Clippy Lints
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  clippy:
+    name: Clippy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Sources
+        uses: actions/checkout@v4
+
+      - name: Install Stable Toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy
+
+      - name: Cache Build Artifacts
+        uses: swatinem/rust-cache@v2
+
+      - name: Clippy Lints
+        run: cargo clippy --workspace --all-targets --all-features -- -D warnings

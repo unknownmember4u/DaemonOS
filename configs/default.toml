@@ -1,0 +1,17 @@
+# ==============================================================================
+# DaemonOS Default System Configuration Profile
+# ==============================================================================
+
+[system]
+log_level = "info"
+ipc_socket_path = "/run/user/1000/daemon.sock"
+
+[theme]
+name = "default-dark"
+primary_color = "#3a3a4a"
+font_family = "DejaVu Sans"
+
+[window_manager]
+layout = "tiling"
+gap_size_pixels = 8
+border_thickness_pixels = 2

@@ -1,0 +1,14 @@
+# ==============================================================================
+# DaemonOS Developer Configuration Override Profile
+# ==============================================================================
+
+[system]
+log_level = "debug"
+ipc_socket_path = "/tmp/daemon-dev.sock"
+
+[theme]
+name = "neon-debugger"
+
+[window_manager]
+layout = "floating"
+gap_size_pixels = 4

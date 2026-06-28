@@ -1,0 +1,15 @@
+# Set default behavior to automatically normalize line endings
+* text=auto eol=lf
+
+# Force text files to always use LF line endings
+*.sh text eol=lf
+*.toml text
+*.rs text
+*.md text
+
+# Mark binary files to prevent corruption
+*.png binary
+*.jpg binary
+*.webp binary
+*.ico binary
+*.ttf binary

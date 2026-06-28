@@ -1,0 +1,7 @@
+[alias]
+c = "check"
+t = "test"
+r = "run"
+b = "build"
+fmt-check = "fmt --all -- --check"
+clippy-check = "clippy --all-targets --all-features -- -D warnings"
